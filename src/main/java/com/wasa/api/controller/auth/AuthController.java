@@ -27,21 +27,15 @@ import io.sentry.Sentry;
 @RequestMapping(value = "api")
 @RestController
 public class AuthController {
-
 	@Autowired
 	CutomeUserDetailService userDetails;
-
 	@Autowired
 	JwtTokenProvider jwtTokenProvider;
-
 	@Autowired
 	AuthenticationManager authManager;
-
 	@Autowired
 	ObjectMapper mapper = new ObjectMapper();
-
 //	CustomPasswordEncoder encoder = new CustomPasswordEncoder();
-
 	@PostMapping(value = "authenticate", produces = "application/json")
 	public ResponseEntity<?> authenticate(@RequestBody AuthRequest request) throws JsonProcessingException {
 		ObjectNode node = mapper.createObjectNode();
@@ -72,5 +66,4 @@ public class AuthController {
 		}
 		return ResponseEntity.ok().body(mapper.writer().writeValueAsString(node));
 	}
-
 }
